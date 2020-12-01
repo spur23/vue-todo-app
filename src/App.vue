@@ -101,7 +101,7 @@ export default {
 
     const idCounter =
       taskListFromStorage === null
-        ? 1
+        ? defaultTasks.reduce((a, b) => Math.max(a.id, b.id))
         : taskListFromStorage.reduce((a, b) => Math.max(a.id, b.id));
 
     this.tasks = taskListFromStorage || defaultTasks;
