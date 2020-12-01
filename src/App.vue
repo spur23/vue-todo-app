@@ -134,7 +134,6 @@ export default {
       this.tasks = updatedTasks;
     },
     toggleComplete(id) {
-      console.log(id);
       const updatedTasks = this.tasks.map((task) => {
         if (task.id !== id) {
           return task;
