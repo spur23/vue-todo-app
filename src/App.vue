@@ -113,7 +113,7 @@ export default {
         : taskListFromStorage.reduce((a, b) => Math.max(a.id, b.id));
 
     this.tasks = taskListFromStorage || defaultTasks;
-    this.idCounter = idCounter.id;
+    this.idCounter = idCounter.id || idCounter;
   },
   methods: {
     addTask() {
