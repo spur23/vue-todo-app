@@ -88,9 +88,32 @@ export default {
           delete: false
         }
       ],
-      idCounter: 4,
+      idCounter: 1,
       enteredTask: ''
     };
+  },
+  beforeMount() {
+    const taskListFromStorage = localStorage.getItem('todo-list')
+      ? JSON.parse(localStorage.getItem('todo-list'))
+      : null;
+
+    const defaultTasks = [
+      {
+        id: 1,
+        task: 'Take Dogs Out',
+        completed: false,
+        edit: false,
+        delete: false
+      }
+    ];
+
+    const idCounter =
+      taskListFromStorage === null
+        ? 1
+        : taskListFromStorage.reduce((a, b) => Math.max(a.id, b.id));
+
+    this.tasks = taskListFromStorage || defaultTasks;
+    this.idCounter = idCounter.id;
   },
   methods: {
     addTask() {
@@ -107,9 +130,11 @@ export default {
       this.enteredTask = '';
 
       this.tasks = [...this.tasks, newTask];
+      this.saveTaskListLocal();
     },
     deleteTask(id) {
       this.tasks = this.tasks.filter((task) => task.id !== id);
+      this.saveTaskListLocal();
     },
     toggleEdit(id) {
       this.tasks = this.tasks.map((task) => {
@@ -132,6 +157,7 @@ export default {
       });
 
       this.tasks = updatedTasks;
+      this.saveTaskListLocal();
     },
     toggleComplete(id) {
       const updatedTasks = this.tasks.map((task) => {
@@ -143,6 +169,10 @@ export default {
       });
 
       this.tasks = updatedTasks;
+      this.saveTaskListLocal();
+    },
+    saveTaskListLocal() {
+      localStorage.setItem('todo-list', JSON.stringify(this.tasks));
     }
   }
 };
