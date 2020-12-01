@@ -58,36 +58,7 @@ export default {
   },
   data() {
     return {
-      tasks: [
-        {
-          id: 1,
-          task: 'Take Dogs Out',
-          completed: false,
-          edit: false,
-          delete: false
-        },
-        {
-          id: 2,
-          task: 'Get Groceries',
-          completed: false,
-          edit: false,
-          delete: false
-        },
-        {
-          id: 3,
-          task: 'Wash Car',
-          completed: false,
-          edit: false,
-          delete: false
-        },
-        {
-          id: 4,
-          task: 'Get Dinner',
-          completed: false,
-          edit: false,
-          delete: false
-        }
-      ],
+      tasks: [],
       idCounter: 1,
       enteredTask: ''
     };
@@ -101,6 +72,27 @@ export default {
       {
         id: 1,
         task: 'Take Dogs Out',
+        completed: false,
+        edit: false,
+        delete: false
+      },
+      {
+        id: 2,
+        task: 'Get Groceries',
+        completed: false,
+        edit: false,
+        delete: false
+      },
+      {
+        id: 3,
+        task: 'Wash Car',
+        completed: false,
+        edit: false,
+        delete: false
+      },
+      {
+        id: 4,
+        task: 'Get Dinner',
         completed: false,
         edit: false,
         delete: false
