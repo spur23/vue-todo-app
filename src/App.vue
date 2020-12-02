@@ -64,10 +64,6 @@ export default {
     };
   },
   beforeMount() {
-    const taskListFromStorage = localStorage.getItem('todo-list')
-      ? JSON.parse(localStorage.getItem('todo-list'))
-      : null;
-
     const defaultTasks = [
       {
         id: 1,
@@ -99,9 +95,18 @@ export default {
       }
     ];
 
+    const taskListFromStorage = localStorage.getItem('todo-list')
+      ? JSON.parse(localStorage.getItem('todo-list')).length !== 0
+        ? JSON.parse(localStorage.getItem('todo-list'))
+        : undefined
+      : null;
+
+    console.log(taskListFromStorage);
     const idCounter =
-      taskListFromStorage === null
-        ? defaultTasks.reduce((a, b) => Math.max(a.id, b.id))
+      taskListFromStorage === undefined
+        ? 0
+        : taskListFromStorage === null
+        ? 5
         : taskListFromStorage.reduce((a, b) => Math.max(a.id, b.id));
 
     this.tasks = taskListFromStorage || defaultTasks;
