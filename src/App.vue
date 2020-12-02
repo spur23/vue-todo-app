@@ -101,7 +101,6 @@ export default {
         : undefined
       : null;
 
-    console.log(taskListFromStorage);
     const idCounter =
       taskListFromStorage === undefined
         ? 0
@@ -109,7 +108,13 @@ export default {
         ? 5
         : taskListFromStorage.reduce((a, b) => Math.max(a.id, b.id));
 
-    this.tasks = taskListFromStorage || defaultTasks;
+    this.tasks =
+      taskListFromStorage === null
+        ? defaultTasks
+        : taskListFromStorage === undefined
+        ? []
+        : taskListFromStorage;
+
     this.idCounter = idCounter.id || idCounter;
   },
   methods: {
